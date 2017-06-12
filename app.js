@@ -131,3 +131,7 @@ var pikePlace = {
     return salesByHour;
   },
 };
+function createList(location){
+  var container = document.createElement(’section');
+  container.innerHTML = '<h1>' + location.name + '</h1>';
+  document.body.appendChild(container);
