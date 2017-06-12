@@ -1,143 +1,154 @@
-var timesOfDay = ['6am: ', '7am: ', '8am: ', '9am: ', '10am: ', '11am: ', '12pm: ', '1pm: ', '2pm: ', '3pm: ', '4pm: ', '5pm: ', '6pm: ', '7pm: ', '8pm'];
+var timesOfDay = ['6am: ', '7am: ', '8am: ', '9am: ', '10am: ', '11am: ', '12pm: ', '1pm: ', '2pm: ', '3pm: ', '4pm: ', '5pm: ', '6pm: ', '7pm: ', '8pm', 'Total:'];
 
-//Pike's Place object
 var pikePlace = {
   name: 'Pikes Market',
   minCust: 23,
   maxCust: 65,
-  avgCookiesPerSale: 6.3,
+  avgCookieSale: 6.3,
   custPerHour: function (){
-    var customers = Math.floor(Math.random() * (maxCust - minCust) + minCust);
-    return customers;
-    console.log(customers);
+    var cust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
+    return cust;
   },
-  cookiesPerHour: function(){
-    var salesByHour = [];
+  salesByHour: function(){ //an array with 15 values in it corresponding to hours in the day, last value is total sales of the day
+    var hourlySales = [];
     for(var i = 0; i < 15; i++){
-      var sales = this.custPerHour() * this.avgCookiesPerSale;
-      salesByHour.push(Math.ceil(sales));
+      var sales = this.custPerHour() * this.avgCookieSale;
+      hourlySales.push(Math.ceil(sales));
     }
     var totalSales = 0;
-    for(var c = 0; c < 15; c++){
-      totalSales = salesByHour[j] + totalSales;
+    for(var k = 0; k < 15; k++){
+      totalSales = hourlySales[k] + totalSales;
     }
-    salesByHour.push(totalSales);
-    console.log(salesByHour);
-    return salesByHour;
+    hourlySales.push(totalSales);
+    return hourlySales;
   },
 };
-//SeaTac object
+
 var seaTac = {
   name: 'SeaTac',
   minCust: 3,
   maxCust: 24,
-  avgCookiesPerSale: 1.2,
+  avgCookieSale: 1.2,
   custPerHour: function (){
-    var customers = Math.floor(Math.random() * (maxCust - minCust) + minCust);
-    return customers;
-    console.log(customers);
+    var cust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
+    return cust;
   },
-  cookiesPerHour: function(){
-    var salesByHour = [];
+  salesByHour: function(){ //an array with 15 values in it corresponding to hours in the day, last value is total sales of the day
+    var hourlySales = [];
     for(var i = 0; i < 15; i++){
-      var sales = this.custPerHour() * this.avgCookiesPerSale;
-      salesByHour.push(Math.ceil(sales));
+      var sales = this.custPerHour() * this.avgCookieSale;
+      hourlySales.push(Math.ceil(sales));
     }
     var totalSales = 0;
-    for(var c = 0; c < 15; c++){
-      totalSales = salesByHour[j] + totalSales;
+    for(var k = 0; k < 15; k++){
+      totalSales = hourlySales[k] + totalSales;
     }
-    salesByHour.push(totalSales);
-    console.log(salesByHour);
-    return salesByHour;
+    hourlySales.push(totalSales);
+    return hourlySales;
   },
-};//Seattle Center object
-var seaCenter = {
+};
+//Seattle Center object
+var seaCent = {
   name: 'Seattle Center',
   minCust: 11,
   maxCust: 38,
-  avgCookiesPerSale: 3.7,
+  avgCookieSale: 2.7,
   custPerHour: function (){
-    var customers = Math.floor(Math.random() * (maxCust - minCust) + minCust);
-    return customers;
-    console.log(customers);
+    var cust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
+    console.log(cust);
+    return cust;
   },
-  cookiesPerHour: function(){
-    var salesByHour = [];
+  salesByHour: function(){
+    var hourlySales = [];
     for(var i = 0; i < 15; i++){
-      var sales = this.custPerHour() * this.avgCookiesPerSale;
-      salesByHour.push(Math.ceil(sales));
+      var sales = this.custPerHour() * this.avgCookieSale;
+      hourlySales.push(Math.ceil(sales));
     }
     var totalSales = 0;
-    for(var c = 0; c < 15; c++){
-      totalSales = salesByHour[j] + totalSales;
+    for(var k = 0; k < 15; k++){
+      totalSales = hourlySales[k] + totalSales;
     }
-    salesByHour.push(totalSales);
-    console.log(salesByHour);
-    return salesByHour;
+    hourlySales.push(totalSales);
+    console.log(hourlySales);
+    return hourlySales;
   },
 };
 
-//Capitol Hill object
 var capHill = {
   name: 'Capitol Hill',
   minCust: 20,
   maxCust: 38,
-  avgCookiesPerSale: 2.3,
+  avgCookieSale: 2.3,
   custPerHour: function (){
-    var customers = Math.floor(Math.random() * (maxCust - minCust) + minCust);
-    return customers;
-    console.log(customers);
+    var cust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
+    return cust;
   },
-  cookiesPerHour: function(){
-    var salesByHour = [];
+  salesByHour: function(){ //an array with 15 values in it corresponding to hours in the day, last value is total sales of the day
+    var hourlySales = [];
     for(var i = 0; i < 15; i++){
-      var sales = this.custPerHour() * this.avgCookiesPerSale;
-      salesByHour.push(Math.ceil(sales));
+      var sales = this.custPerHour() * this.avgCookieSale;
+      hourlySales.push(Math.ceil(sales));
     }
     var totalSales = 0;
-    for(var c = 0; c < 15; c++){
-      totalSales = salesByHour[j] + totalSales;
+    for(var k = 0; k < 15; k++){
+      totalSales = hourlySales[k] + totalSales;
     }
-    salesByHour.push(totalSales);
-    console.log(salesByHour);
-    return salesByHour;
+    hourlySales.push(totalSales);
+    console.log(hourlySales);
+    return hourlySales;
   },
 };
 
-//Alki object
 var alki = {
   name: 'Alki',
   minCust: 2,
   maxCust: 16,
-  avgCookiesPerSale: 4.6,
+  avgCookieSale: 4.6,
   custPerHour: function (){
-    var customers = Math.floor(Math.random() * (maxCust - minCust) + minCust);
-    return customers;
-    console.log(customers);
+    var cust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
+    console.log(cust);
+    return cust;
   },
-  cookiesPerHour: function(){
-    var salesByHour = [];
+  salesByHour: function(){ //an array with 15 values in it corresponding to hours in the day, last value is total sales of the day
+    var hourlySales = [];
     for(var i = 0; i < 15; i++){
-      var sales = this.custPerHour() * this.avgCookiesPerSale;
-      salesByHour.push(Math.ceil(sales));
+      var sales = this.custPerHour() * this.avgCookieSale;
+      hourlySales.push(Math.ceil(sales));
     }
     var totalSales = 0;
-    for(var c = 0; c < 15; c++){
-      totalSales = salesByHour[j] + totalSales;
+    for(var k = 0; k < 15; k++){
+      totalSales = hourlySales[k] + totalSales;
     }
-    salesByHour.push(totalSales);
-    console.log(salesByHour);
-    return salesByHour;
+    hourlySales.push(totalSales);
+    console.log(hourlySales);
+    return hourlySales;
   },
 };
+
 function createList(location){
-var container = document.createElement('section');
+  var container = document.createElement('section');
   container.innerHTML = '<h1>' + location.name + '</h1>';
   document.body.appendChild(container);
 
   var pairsList = [];
 
-  for(var z = 0; z < 15; z++){
-    pairsList.push(timesOfDay[z] + location.salesByHour()[z] + ' cookies');
+  for(var k = 0; k < 16; k++){
+    pairsList.push(timesOfDay[k] + location.salesByHour()[k] + ' cookies');
   }
+
+  var list = document.createElement('ul');
+  var listArr = [];
+
+  for (var x = 0; x < 16; x++) {
+    listArr.push('<li>' + pairsList[x] + '</li>');
+  }
+  var full_list = listArr.join('');
+  list.innerHTML = full_list;
+  document.body.appendChild(list);
+}
+
+createList(pikePlace);
+createList(seaTac);
+createList(seaCent);
+createList(capHill);
+createList(alki);
