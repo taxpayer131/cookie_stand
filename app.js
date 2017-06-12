@@ -1,5 +1,6 @@
-var timesOfDay = ['6am: ', '7am: ', '8am: ', '9am: ', '10am: ', '11am: ', '12pm: ', '1pm: ', '2pm: ', '3pm: ', '4pm: ', '5pm: ', '6pm: ', '7pm: ', '8pm', 'Total:'];
+var timesOfDay = ['6am: ', '7am: ', '8am: ', '9am: ', '10am: ', '11am: ', '12pm: ', '1pm: ', '2pm: ', '3pm: ', '4pm: ', '5pm: ', '6pm: ', '7pm: ', '8pm:', 'Grand Total:'];
 
+//Pike's Market object
 var pikePlace = {
   name: 'Pikes Market',
   minCust: 23,
@@ -9,9 +10,9 @@ var pikePlace = {
     var cust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
     return cust;
   },
-  salesByHour: function(){ //an array with 15 values in it corresponding to hours in the day, last value is total sales of the day
+  salesByHour: function(){
     var hourlySales = [];
-    for(var i = 0; i < 15; i++){
+    for(var i = 0; i < 15; i++){//15 items in the array, one for every hour between 6am and 8pm
       var sales = this.custPerHour() * this.avgCookieSale;
       hourlySales.push(Math.ceil(sales));
     }
@@ -24,6 +25,7 @@ var pikePlace = {
   },
 };
 
+//SeaTAc object
 var seaTac = {
   name: 'SeaTac',
   minCust: 3,
@@ -33,7 +35,7 @@ var seaTac = {
     var cust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
     return cust;
   },
-  salesByHour: function(){ //an array with 15 values in it corresponding to hours in the day, last value is total sales of the day
+  salesByHour: function(){
     var hourlySales = [];
     for(var i = 0; i < 15; i++){
       var sales = this.custPerHour() * this.avgCookieSale;
@@ -74,6 +76,7 @@ var seaCent = {
   },
 };
 
+//Capitol Hill object
 var capHill = {
   name: 'Capitol Hill',
   minCust: 20,
@@ -83,7 +86,7 @@ var capHill = {
     var cust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
     return cust;
   },
-  salesByHour: function(){ //an array with 15 values in it corresponding to hours in the day, last value is total sales of the day
+  salesByHour: function(){
     var hourlySales = [];
     for(var i = 0; i < 15; i++){
       var sales = this.custPerHour() * this.avgCookieSale;
@@ -99,6 +102,7 @@ var capHill = {
   },
 };
 
+//Alki object
 var alki = {
   name: 'Alki',
   minCust: 2,
@@ -109,7 +113,7 @@ var alki = {
     console.log(cust);
     return cust;
   },
-  salesByHour: function(){ //an array with 15 values in it corresponding to hours in the day, last value is total sales of the day
+  salesByHour: function(){
     var hourlySales = [];
     for(var i = 0; i < 15; i++){
       var sales = this.custPerHour() * this.avgCookieSale;
