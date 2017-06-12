@@ -27,11 +27,11 @@ var pikePlace = {
   },
 };
 //SeaTac object
-var pikePlace = {
-  name: 'Pikes Market',
-  minCust: 23,
-  maxCust: 65,
-  avgCookiesPerSale: 6.3,
+var seaTac = {
+  name: 'SeaTac',
+  minCust: 3,
+  maxCust: 24,
+  avgCookiesPerSale: 1.2,
   custPerHour: function (){
     var customers = Math.floor(Math.random() * (maxCust - minCust) + minCust);
     return customers;
@@ -52,11 +52,11 @@ var pikePlace = {
     return salesByHour;
   },
 };//Seattle Center object
-var pikePlace = {
-  name: 'Pikes Market',
-  minCust: 23,
-  maxCust: 65,
-  avgCookiesPerSale: 6.3,
+var seaCenter = {
+  name: 'Seattle Center',
+  minCust: 11,
+  maxCust: 38,
+  avgCookiesPerSale: 3.7,
   custPerHour: function (){
     var customers = Math.floor(Math.random() * (maxCust - minCust) + minCust);
     return customers;
@@ -79,11 +79,11 @@ var pikePlace = {
 };
 
 //Capitol Hill object
-var pikePlace = {
-  name: 'Pikes Market',
-  minCust: 23,
-  maxCust: 65,
-  avgCookiesPerSale: 6.3,
+var capHill = {
+  name: 'Capitol Hill',
+  minCust: 20,
+  maxCust: 38,
+  avgCookiesPerSale: 2.3,
   custPerHour: function (){
     var customers = Math.floor(Math.random() * (maxCust - minCust) + minCust);
     return customers;
@@ -106,11 +106,11 @@ var pikePlace = {
 };
 
 //Alki object
-var pikePlace = {
-  name: 'Pikes Market',
-  minCust: 23,
-  maxCust: 65,
-  avgCookiesPerSale: 6.3,
+var alki = {
+  name: 'Alki',
+  minCust: 2,
+  maxCust: 16,
+  avgCookiesPerSale: 4.6,
   custPerHour: function (){
     var customers = Math.floor(Math.random() * (maxCust - minCust) + minCust);
     return customers;
@@ -132,6 +132,12 @@ var pikePlace = {
   },
 };
 function createList(location){
-  var container = document.createElement(’section');
+var container = document.createElement('section');
   container.innerHTML = '<h1>' + location.name + '</h1>';
   document.body.appendChild(container);
+
+  var pairsList = [];
+
+  for(var z = 0; z < 15; z++){
+    pairsList.push(timesOfDay[z] + location.salesByHour()[z] + ' cookies');
+  }
