@@ -5,14 +5,23 @@ var pikePlace = {
   minCust: 23,
   maxCust: 65,
   avgCookiesPerSale: 6.3,
-  calcCustPerHour: function (){
+  custPerHour: function (){
     var customers = Math.floor(Math.random() * (maxCust - minCust) + minCust);
     return customers;
     console.log(customers);
   },
   cookiesPerHour: function(){
-    var hourlySales = [];
+    var salesByHour = [];
     for(var i = 0; i < 15; i++){
       var sales = this.custPerHour() * this.avgCookiesPerSale;
-      hourlySales.push(Math.ceil(sales));
+      salesByHour.push(Math.ceil(sales));
     }
+    var totalSales = 0;
+    for(var c = 0; c < 15; c++){
+      totalSales = salesByHour[j] + totalSales;
+    }
+    salesByHour.push(totalSales);
+    console.log(salesByHour);
+    return salesByHour;
+  },
+};
