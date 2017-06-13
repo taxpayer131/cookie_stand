@@ -2,48 +2,64 @@
 
 var timesOfDay = ['6am: ', '7am: ', '8am: ', '9am: ', '10am: ', '11am: ', '12pm: ', '1pm: ', '2pm: ', '3pm: ', '4pm: ', '5pm: ', '6pm: ', '7pm: ', '8pm:', 'Grand Total:'];
 
+//Pike's Market constructor function
+function Store(name, minCust, avgCookiesSale) {
+  this.name = name;
+  this.minCust = minCust;
+  this.avgCookiesSale = avgCookiesSale;
+}
+Store.prototype.custPerHour = function(){
+  var cust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
+  return cust;
+}
+}
+
 // //Pike's Market object
-// var pikePlace = {
-//   name: 'Pikes Market',
-//   minCust: 23,
-//   maxCust: 65,
-//   avgCookieSale: 6.3,
-//   custPerHour: function (){
+var pikePlace = {
+  name: 'Pikes Market',
+  minCust: 23,
+  maxCust: 65,
+  avgCookieSale: 6.3,
+  custPerHour: function (){
+    var cust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
+    return cust;
+  },
+  salesByHour: function(){
+    var hourlySales = [];
+    for(var i = 0; i < 15; i++){//15 items in the array, one for every hour between 6am and 8pm
+      var sales = this.custPerHour() * this.avgCookieSale;
+      hourlySales.push(Math.ceil(sales));
+    }
+    var totalSales = 0;
+    for(var i = 0; i < 15; i++){
+      totalSales = hourlySales[i] + totalSales;
+    }
+    hourlySales.push(totalSales);
+    return hourlySales;
+  },
+};
+//Pike's Market constructor function
+// function Store =('Name', 'minCust', avgCookiesSale) {
+//   this.Name = 'Name';
+//   this.minCust = minCust;
+//   this.avgCookiesSale = avgCookiesSale;
+//
+//   Store.salesByHour = function(){
 //     var cust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
-//     return cust;
-//   },
-//   salesByHour: function(){
+//   return cust;
+// }
+//   Store.salesByHour = function(){
 //     var hourlySales = [];
-//     for(var i = 0; i < 15; i++){//15 items in the array, one for every hour between 6am and 8pm
+//     for(var i = 0; i < 15; i++){
 //       var sales = this.custPerHour() * this.avgCookieSale;
 //       hourlySales.push(Math.ceil(sales));
-//     }
+// }
 //     var totalSales = 0;
 //     for(var i = 0; i < 15; i++){
 //       totalSales = hourlySales[i] + totalSales;
 //     }
-//     hourlySales.push(totalSales);
-//     return hourlySales;
-//   },
-// };
-//Pike's Market constructor function
-function Store =('Name', 'minCust', avgCookiesSale) {
-  this.Name = 'Name';
-  this.minCust = minCust;
-  this.avgCookiesSale = avgCookiesSale;
-
-  Store.salesByHour = function(){
-    var cust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
-  return cust;
-}
-  Store.salesByHour = function(){
-    var hourlySales = [];
-    for(var i = 0; i < 15; i++){
-      var sales = this.custPerHour() * this.avgCookieSale;
-      hourlySales.push(Math.ceil(sales));
-}
-
-// }
+// hourlySales.push(totalSales);
+// return hourlySales;
 
 //SeaTAc object
 var seaTac = {
@@ -87,8 +103,8 @@ var seaCent = {
       hourlySales.push(Math.ceil(sales));
     }
     var totalSales = 0;
-    for(var k = 0; k < 15; k++){
-      totalSales = hourlySales[k] + totalSales;
+    for(var i = 0; i < 15; i++){
+      totalSales = hourlySales[i] + totalSales;
     }
     hourlySales.push(totalSales);
     console.log(hourlySales);
@@ -113,8 +129,8 @@ var capHill = {
       hourlySales.push(Math.ceil(sales));
     }
     var totalSales = 0;
-    for(var k = 0; k < 15; k++){
-      totalSales = hourlySales[k] + totalSales;
+    for(var i = 0; i < 15; i++){
+      totalSales = hourlySales[i] + totalSales;
     }
     hourlySales.push(totalSales);
     console.log(hourlySales);
@@ -140,8 +156,8 @@ var alki = {
       hourlySales.push(Math.ceil(sales));
     }
     var totalSales = 0;
-    for(var k = 0; k < 15; k++){
-      totalSales = hourlySales[k] + totalSales;
+    for(var i = 0; i < 15; i++){
+      totalSales = hourlySales[i] + totalSales;
     }
     hourlySales.push(totalSales);
     console.log(hourlySales);
@@ -156,15 +172,15 @@ function createList(location){
 
   var pairsList = [];
 
-  for(var k = 0; k < 16; k++){
-    pairsList.push(timesOfDay[k] + location.salesByHour()[k] + ' cookies');
+  for(var i = 0; i < 16; i++){
+    pairsList.push(timesOfDay[i] + location.salesByHour()[i] + ' cookies');
   }
 
   var list = document.createElement('ul');
   var listArr = [];
 
-  for (var x = 0; x < 16; x++) {
-    listArr.push('<li>' + pairsList[x] + '</li>');
+  for (var i = 0; i < 16; i++) {
+    listArr.push('<li>' + pairsList[i] + '</li>');
   }
   var full_list = listArr.join('');
   list.innerHTML = full_list;
