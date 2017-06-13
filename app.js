@@ -19,13 +19,20 @@ var pikePlace = {
       hourlySales.push(Math.ceil(sales));
     }
     var totalSales = 0;
-    for(var k = 0; k < 15; k++){
-      totalSales = hourlySales[k] + totalSales;
+    for(var i = 0; i < 15; i++){
+      totalSales = hourlySales[i] + totalSales;
     }
     hourlySales.push(totalSales);
     return hourlySales;
   },
 };
+//Pike's Market constructor function
+// function Pikeplace = ('name', 'minCust', avgCookiesSale) {
+//   this.name = 'Pikes Market';
+//   this.minCust = 23;
+//   this.avgCookiesSale = 6.3;
+Pikeplace.name
+// }
 
 //SeaTAc object
 var seaTac = {
@@ -44,8 +51,8 @@ var seaTac = {
       hourlySales.push(Math.ceil(sales));
     }
     var totalSales = 0;
-    for(var k = 0; k < 15; k++){
-      totalSales = hourlySales[k] + totalSales;
+    for(var i = 0; i < 15; i++){
+      totalSales = hourlySales[i] + totalSales;
     }
     hourlySales.push(totalSales);
     return hourlySales;
