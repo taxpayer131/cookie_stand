@@ -1,3 +1,5 @@
+'use strict';
+
 var timesOfDay = ['6am: ', '7am: ', '8am: ', '9am: ', '10am: ', '11am: ', '12pm: ', '1pm: ', '2pm: ', '3pm: ', '4pm: ', '5pm: ', '6pm: ', '7pm: ', '8pm:', 'Grand Total:'];
 
 //Pike's Market object
@@ -128,7 +130,7 @@ var alki = {
     return hourlySales;
   },
 };
-
+//Renders the store numbers to the DOM
 function createList(location){
   var container = document.createElement('section');
   container.innerHTML = '<h1>' + location.name + '</h1>';
@@ -150,7 +152,7 @@ function createList(location){
   list.innerHTML = full_list;
   document.body.appendChild(list);
 }
-
+//calls on each store function to run
 createList(pikePlace);
 createList(seaTac);
 createList(seaCent);
