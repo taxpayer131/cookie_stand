@@ -3,63 +3,51 @@
 var timesOfDay = ['6am: ', '7am: ', '8am: ', '9am: ', '10am: ', '11am: ', '12pm: ', '1pm: ', '2pm: ', '3pm: ', '4pm: ', '5pm: ', '6pm: ', '7pm: ', '8pm:', 'Grand Total:'];
 
 //Pike's Market constructor function
-function Store(name, minCust, avgCookiesSale) {
-  this.name = name;
-  this.minCust = minCust;
-  this.avgCookiesSale = avgCookiesSale;
-}
-Store.prototype.custPerHour = function(){
-  var cust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
-  return cust;
-}
-}
-
-// //Pike's Market object
-var pikePlace = {
-  name: 'Pikes Market',
-  minCust: 23,
-  maxCust: 65,
-  avgCookieSale: 6.3,
-  custPerHour: function (){
-    var cust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
-    return cust;
-  },
-  salesByHour: function(){
-    var hourlySales = [];
-    for(var i = 0; i < 15; i++){//15 items in the array, one for every hour between 6am and 8pm
-      var sales = this.custPerHour() * this.avgCookieSale;
-      hourlySales.push(Math.ceil(sales));
-    }
+function Store(name, minCust, maxCust,avgCookieSale) {
+    this.name = name;
+    this.minCust = minCust;
+    this.maxCust = maxCust;
+    this.avgCookieSale = avgCookieSale;
+    custPerHour: function ()  {
+      var cust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
+      return cust;
+    },
+    salesByHour: function(){
+      var hourlySales = [];
+      for(var i = 0; i < 15; i++){//15 items in the array, one for every hour between 6am and 8pm
+        var sales = this.custPerHour() * this.avgCookieSale;
+        hourlySales.push(Math.ceil(sales));
+      }
     var totalSales = 0;
     for(var i = 0; i < 15; i++){
       totalSales = hourlySales[i] + totalSales;
     }
     hourlySales.push(totalSales);
     return hourlySales;
-  },
-};
-//Pike's Market constructor function
-// function Store =('Name', 'minCust', avgCookiesSale) {
-//   this.Name = 'Name';
-//   this.minCust = minCust;
-//   this.avgCookiesSale = avgCookiesSale;
-//
-//   Store.salesByHour = function(){
+}
+//Pike's Market object
+// var pikePlace = {
+//   name: 'Pikes Market',
+//   minCust: 23,
+//   maxCust: 65,
+//   avgCookieSale: 6.3,
+//   custPerHour: function (){
 //     var cust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
-//   return cust;
-// }
-//   Store.salesByHour = function(){
+//     return cust;
+//   },
+//   salesByHour: function(){
 //     var hourlySales = [];
-//     for(var i = 0; i < 15; i++){
+//     for(var i = 0; i < 15; i++){//15 items in the array, one for every hour between 6am and 8pm
 //       var sales = this.custPerHour() * this.avgCookieSale;
 //       hourlySales.push(Math.ceil(sales));
-// }
-//     var totalSales = 0;
-//     for(var i = 0; i < 15; i++){
-//       totalSales = hourlySales[i] + totalSales;
 //     }
-// hourlySales.push(totalSales);
-// return hourlySales;
+//   var totalSales = 0;
+//   for(var i = 0; i < 15; i++){
+//     totalSales = hourlySales[i] + totalSales;
+//   }
+//   hourlySales.push(totalSales);
+//   return hourlySales;
+// }
 
 //SeaTAc object
 var seaTac = {
