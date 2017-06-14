@@ -51,7 +51,14 @@ function Stores(name, minCust, maxCust, avgCookieSale, hourlySales, hourlyCust, 
   this.totalSales = 0;
   allStores.push(this);
 }
-function storeTable(){
+
+new Store('Pikes Market', 23, 65, 6.3);
+new Store ('Seatac', 3, 24, 1.2);
+new Store('Seattle Center', 11, 38, 3.7);
+new Store('Capitol Hill', 30, 28, 2.3);
+new Store('Alki', 2, 16, 4.6);
+
+function storesTable(){
 
 }
 //calls on each store function to run
