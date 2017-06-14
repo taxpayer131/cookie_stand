@@ -1,6 +1,13 @@
 'use strict';
 
+//Array for the different times of day
 var timesOfDay = ['6am: ', '7am: ', '8am: ', '9am: ', '10am: ', '11am: ', '12pm: ', '1pm: ', '2pm: ', '3pm: ', '4pm: ', '5pm: ', '6pm: ', '7pm: ', '8pm:', 'Grand Total:'];
+//Variables ready to make the individual store objects
+var pikePlace = new Store('Pikes Market', 23, 65, 6.3);
+var seaTac = new Store ('Seatac', 3, 24, 1.2);
+var seaCent = new Store('Seattle Center', 11, 38, 3.7);
+var capHill = new Store('Capitol Hill', 30, 28, 2.3);
+var alki = new Store('Alki', 2, 16, 4.6);
 
 //Constructor function
 function Store(name, minCust, maxCust,avgCookieSale) {
@@ -31,36 +38,32 @@ Store.prototype.calcSalesByHour = function(){
   return this.hourlySales;
 };
 
-//Variables ready to make the individual store objects
-var pikePlace = new Store('Pikes Market', 23, 65, 6.3);
-var seaTac = new Store ('Seatac', 3, 24, 1.2);
-var seaCent = new Store('Seattle Center', 11, 38, 3.7);
-var capHill = new Store('Capitol Hill', 30, 28, 2.3);
-var alki = new Store('Alki', 2, 16, 4.6);
+//Rendering in JS for lab 7
+Store.prototype.render = function(){
 
-//Renders the store numbers to the DOM
-function createList(location){
-  var container = document.createElement('section');
-  container.innerHTML = '<h1>' + location.name + '</h1>';
-  document.body.appendChild(container);
+  // <tr>              create tr
+  var trEl = document.createElement('tr');
 
-  var pairsList = [];
+  //   <th>Name</th>   create a th, give it content, add it to tr
+  var tdEl = document.createElement('td');
+  tdEl.textContent = this.name;
+  trEl.appendChild(tdEl);
 
-  for(var i = 0; i < timesOfDay.length; i++){
-    pairsList.push(timesOfDay[i] + location.salesByHour()[i] + ' cookies');
-  }
+  //   <th>Color</th>  create a th, give it content, add it to tr
+  tdEl = document.createElement('td');
+  tdEl.textContent = this.color;
+  trEl.appendChild(tdEl);
 
-  var list = document.createElement('ul');
-  var listArr = [];
+  //   <th>Tail</th>   create a th, give it content, add it to tr
+  tdEl = document.createElement('td');
+  tdEl.textContent = this.tail;
+  trEl.appendChild(tdEl);
 
-  for (var i = 0; i < timesOfDay.length; i++) {
-    listArr.push('<li>' + pairsList[i] + '</li>');
-  }
-  var full_list = listArr.join('');
-  list.innerHTML = full_list;
-  document.body.appendChild(list);
-}
-// //calls on each store function to run
+  // </tr>             add tr to the table
+  theTable.appendChild(trEl);
+};
+
+//calls on each store function to run
 // createList(pikePlace);
 // createList(seaTac);
 // createList(seaCent);
