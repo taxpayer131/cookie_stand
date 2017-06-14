@@ -10,7 +10,7 @@ var capHill = new Store('Capitol Hill', 30, 28, 2.3);
 var alki = new Store('Alki', 2, 16, 4.6);
 
 //Constructor function
-function Store(name, minCust, maxCust,avgCookieSale) {
+function Store(name, minCust, maxCust, avgCookieSale) {
   this.name = name;
   this.minCust = minCust;
   this.maxCust = maxCust;
@@ -39,30 +39,21 @@ Store.prototype.calcSalesByHour = function(){
 };
 
 //Rendering in JS for lab 7
-Store.prototype.render = function(){
+function Stores(name, minCust, maxCust, avgCookieSale, hourlySales, hourlyCust, totalSales){
+  var allStores = [];
 
-  // <tr>              create tr
-  var trEl = document.createElement('tr');
+  this.name = name;
+  this.minCust = minCust;
+  this.maxCust = maxCust;
+  this.avgCookieSale = avgCookieSale;
+  this.hourlySales = [];
+  this.hourlyCust = [];
+  this.totalSales = 0;
+  allStores.push(this);
+}
+function storeTable(){
 
-  //   <th>Name</th>   create a th, give it content, add it to tr
-  var tdEl = document.createElement('td');
-  tdEl.textContent = this.name;
-  trEl.appendChild(tdEl);
-
-  //   <th>Color</th>  create a th, give it content, add it to tr
-  tdEl = document.createElement('td');
-  tdEl.textContent = this.color;
-  trEl.appendChild(tdEl);
-
-  //   <th>Tail</th>   create a th, give it content, add it to tr
-  tdEl = document.createElement('td');
-  tdEl.textContent = this.tail;
-  trEl.appendChild(tdEl);
-
-  // </tr>             add tr to the table
-  theTable.appendChild(trEl);
-};
-
+}
 //calls on each store function to run
 // createList(pikePlace);
 // createList(seaTac);
