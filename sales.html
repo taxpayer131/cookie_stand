@@ -4,6 +4,29 @@
     <title>Pat's Salmon Cookies</title>
   </head>
   <body>
+    <form id="form">
+      <fieldset>
+        <label for="name">Store Name</label>
+        <input type="text" name="name" placeholder="enter the new store name" required>
+      </fieldset>
+
+      <fieldset>
+        <label for="minCust">Min Customters per Hour</label>
+        <input type="text" name="minCust" placeholder="minimum customers per hour" required>
+      </fieldset>
+
+      <fieldset>
+        <label for="maxCust">Max Customers per Hour</label>
+        <input type="text" name="maxCust" placeholder="maximum customers per hour" required>
+      </fieldset>
+
+      <fieldset>
+        <label for="avgCookieSale">Avg Cookies per Customer</label>
+        <input type="text" name="avgCookieSale" placeholder="Average Cookie Sales" required>
+      </fieldset>
+
+      <button id="submitButton" type="submit">Add a new store!</button>
+    </form>
     <h1>Pat's Salmon Cookies</h1>
     <table id="stores"></table>
   <script src="app.js" type="text/javascript"></script>
