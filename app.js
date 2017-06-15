@@ -72,6 +72,23 @@ myTable.appendChild(trEl);
 for(var i = 0; i < allStores.length; i++){
   allStores[i].render();
 }
+//event listener
+function makeStore(event){
+  event.preventDefault();
+  var name = event.target.name.value;
+  var minCust = parseInt(event.target.minCust.value);
+  var maxCust = parseInt(event.target.maxCust.value);
+  var avgCookieSale = parseInt(event.target.avgCookieSale.value);
+  var addStore = new Store(name, minCust, maxCust, avgCookieSale);
+  addStore.salesByHour();
+  addStore.render();
+  locations.push(addStore);
+  console.log(locations);
+  form.reset();
+}
+
+form.addEventListener('submit', makeStore);
+
 //Variables ready to make the individual store objects
 var pikePlace = new Store('Pikes Market', 23, 65, 6.3);
 var seaTac = new Store ('Seatac', 3, 24, 1.2);
