@@ -1,0 +1,59 @@
+form {
+  position: fixed;
+  width: 550px;
+  height: 250px;
+  margin-left: -550px;
+  padding: 15px;
+  font-family: helvetica;
+  color: #2c3126;
+  background-color: #508E47;
+  border-radius: 0px 10px 10px 0px;
+  border: solid 2px black;
+  transition: 350ms all;
+}
+
+form:hover{
+  margin-left: 0px
+}
+
+fieldset {
+  padding: 15px;
+  width: 450px;
+  border: none;
+}
+
+input {
+  padding: 5px;
+  width: 175px;
+  border: solid 1px #2c3126;
+  border-radius: 3px;
+}
+
+input:focus {
+  background: #555;
+  color: white;
+}
+
+#store-add {
+  float: right;
+  margin-right: -80px;
+  margin-top: 100px;
+  transform: rotate(90deg);
+  color: #CCCE51;
+  font-size: 35px;
+  margin-bottom: 100px;
+  margin-left: -100px;
+}
+
+section {
+  margin-left: 40px;
+}
+
+thead {
+  background: #888;
+}
+
+td {
+  padding: 20px;
+  border: solid 1px black;
+}
