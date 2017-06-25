@@ -78,32 +78,42 @@ function renderAllLocations(){
 }
 
 function makeFooter() {
-  var thEl = document.createElement('th');
+  removeFooter();
+  var tfootEl = document.createElement('tfoot');
+  tfootEl.id = 'tableFooter';
   var trEl = document.createElement('tr');
-  thEl.textContent = 'Hourly Totals';
-  trEl.appendChild(thEl);
+  trEl.textContent = 'Hourly Totals';
   var dailyTotalAllLocations = 0;
   for(var i = 0; i < timesOfDay.length; i++){
     var total = 0;
     for(var j = 0; j < allStores.length; j++){
       total += allStores[j].hourlySales[i];
     }
-    thEl = document.createElement('th');
-    thEl.textContent = total;
-    trEl.appendChild(thEl);
+    var tdEl = document.createElement('td');
+    tdEl.textContent = total;
+    trEl.appendChild(tdEl);
     dailyTotalAllLocations += total;
-    trEl.appendChild(thEl);
+    // trEl.appendChild(thEl);
   }
 
-  thEl = document.createElement('th');
-  thEl.textContent = dailyTotalAllLocations;
-  trEl.appendChild(thEl);
-  myTable.appendChild(trEl);
+  tdEl = document.createElement('td');
+  tdEl.textContent = dailyTotalAllLocations;
+  trEl.appendChild(tdEl);
+  tfootEl.appendChild(trEl);
+  myTable.appendChild(tfootEl);
 }
 
+function removeFooter(){
+  var footerRef = document.getElementById('tableFooter');
+  if (footerRef !== null){
+    footerRef.parentElement.removeChild(footerRef);
+  }
+
+}
 //event listener
 function makeStore(event){
   event.preventDefault();
+  myTable.innerHtml = '';
   var name = event.target.name.value;
   var minCust = parseInt(event.target.minCust.value);
   var maxCust = parseInt(event.target.maxCust.value);
@@ -113,10 +123,8 @@ function makeStore(event){
   event.target.minCust.value = null;
   event.target.maxCust.value = null;
   event.target.avgCookieSale.value = null;
-  myTable.innerHtml = '';
+  addStore.render();
 
-  makeHeader();
-  renderAllLocations();
   makeFooter();
   console.log('first calls');
 }
