@@ -28,9 +28,13 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 body {
 	line-height: 1;
-}
+	background-color: #ffa07a;
+	color: green;
+	}
+
 ol, ul {
 	list-style: none;
 }
@@ -53,10 +57,27 @@ a{
 }
 
 /*element styles*/
-header{
-	width: 100%;
-	height: 100px;
-	border-bottom: 3px solid #2c3126;
+
+header img {
+  float: left;
+  margin-top: 15px;
+  margin-right: 30px;
+}
+
+header ul li {
+  display: inline-block;
+  margin-top: 40px;
+  margin-right: 75px;
+
+}
+header {
+  background: #7FCA9F;
+  height: 100px;
+}
+
+.inner  {
+  width: 960px;
+  margin: 0 auto;
 }
 
 header div {
