@@ -1,160 +1,136 @@
 'use strict';
+var myTable = document.getElementById('stores');
+var allStores = [];
 
-var timesOfDay = ['6am: ', '7am: ', '8am: ', '9am: ', '10am: ', '11am: ', '12pm: ', '1pm: ', '2pm: ', '3pm: ', '4pm: ', '5pm: ', '6pm: ', '7pm: ', '8pm:', 'Grand Total:'];
+//Array for the different times of day
+var timesOfDay = ['6am: ', '7am: ', '8am: ', '9am: ', '10am: ', '11am: ', '12pm: ', '1pm: ', '2pm: ', '3pm: ', '4pm: ', '5pm: ', '6pm: ', '7pm: ', '8pm:'];
 
-//Pike's Market object
-var pikePlace = {
-  name: 'Pikes Market',
-  minCust: 23,
-  maxCust: 65,
-  avgCookieSale: 6.3,
-  custPerHour: function (){
-    var cust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
-    return cust;
-  },
-  salesByHour: function(){
-    var hourlySales = [];
-    for(var i = 0; i < 15; i++){//15 items in the array, one for every hour between 6am and 8pm
-      var sales = this.custPerHour() * this.avgCookieSale;
-      hourlySales.push(Math.ceil(sales));
-    }
-    var totalSales = 0;
-    for(var k = 0; k < 15; k++){
-      totalSales = hourlySales[k] + totalSales;
-    }
-    hourlySales.push(totalSales);
-    return hourlySales;
-  },
+//Constructor function
+function Store(name, minCust, maxCust, avgCookieSale) {
+  this.name = name;
+  this.minCust = minCust;
+  this.maxCust = maxCust;
+  this.avgCookieSale = avgCookieSale;
+  this.hourlySales = [];
+  this.hourlyCust = [];
+  this.totalSales = 0;
+  this.calcSalesByHour();
+  allStores.push(this);
 };
 
-//SeaTAc object
-var seaTac = {
-  name: 'SeaTac',
-  minCust: 3,
-  maxCust: 24,
-  avgCookieSale: 1.2,
-  custPerHour: function (){
+Store.prototype.calcCustPerHour = function ()  {
+  for(var i = 0; i < timesOfDay.length; i++){
     var cust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
-    return cust;
-  },
-  salesByHour: function(){
-    var hourlySales = [];
-    for(var i = 0; i < 15; i++){
-      var sales = this.custPerHour() * this.avgCookieSale;
-      hourlySales.push(Math.ceil(sales));
-    }
-    var totalSales = 0;
-    for(var k = 0; k < 15; k++){
-      totalSales = hourlySales[k] + totalSales;
-    }
-    hourlySales.push(totalSales);
-    return hourlySales;
-  },
-};
-//Seattle Center object
-var seaCent = {
-  name: 'Seattle Center',
-  minCust: 11,
-  maxCust: 38,
-  avgCookieSale: 2.7,
-  custPerHour: function (){
-    var cust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
-    console.log(cust);
-    return cust;
-  },
-  salesByHour: function(){
-    var hourlySales = [];
-    for(var i = 0; i < 15; i++){
-      var sales = this.custPerHour() * this.avgCookieSale;
-      hourlySales.push(Math.ceil(sales));
-    }
-    var totalSales = 0;
-    for(var k = 0; k < 15; k++){
-      totalSales = hourlySales[k] + totalSales;
-    }
-    hourlySales.push(totalSales);
-    console.log(hourlySales);
-    return hourlySales;
-  },
+    this.hourlyCust.push(cust);
+  }
 };
 
-//Capitol Hill object
-var capHill = {
-  name: 'Capitol Hill',
-  minCust: 20,
-  maxCust: 38,
-  avgCookieSale: 2.3,
-  custPerHour: function (){
-    var cust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
-    return cust;
-  },
-  salesByHour: function(){
-    var hourlySales = [];
-    for(var i = 0; i < 15; i++){
-      var sales = this.custPerHour() * this.avgCookieSale;
-      hourlySales.push(Math.ceil(sales));
-    }
-    var totalSales = 0;
-    for(var k = 0; k < 15; k++){
-      totalSales = hourlySales[k] + totalSales;
-    }
-    hourlySales.push(totalSales);
-    console.log(hourlySales);
-    return hourlySales;
-  },
+Store.prototype.calcSalesByHour = function(){
+  this.calcCustPerHour();
+  for(var i = 0; i < timesOfDay.length; i++){
+    var cookies = Math.ceil(this.hourlyCust[i] * this.avgCookieSale);
+    this.hourlySales.push(cookies);
+    this.totalSales += cookies;
+  }
+  return this.hourlySales;
 };
 
-//Alki object
-var alki = {
-  name: 'Alki',
-  minCust: 2,
-  maxCust: 16,
-  avgCookieSale: 4.6,
-  custPerHour: function (){
-    var cust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
-    console.log(cust);
-    return cust;
-  },
-  salesByHour: function(){
-    var hourlySales = [];
-    for(var i = 0; i < 15; i++){
-      var sales = this.custPerHour() * this.avgCookieSale;
-      hourlySales.push(Math.ceil(sales));
-    }
-    var totalSales = 0;
-    for(var k = 0; k < 15; k++){
-      totalSales = hourlySales[k] + totalSales;
-    }
-    hourlySales.push(totalSales);
-    console.log(hourlySales);
-    return hourlySales;
-  },
-};
-//Renders the store numbers to the DOM
-function createList(location){
-  var container = document.createElement('section');
-  container.innerHTML = '<h1>' + location.name + '</h1>';
-  document.body.appendChild(container);
+Store.prototype.render = function(){
+  var trEl = document.createElement('tr');
+  var tdEl = document.createElement('td');
+  tdEl.textContent = this.name;
+  trEl.appendChild(tdEl);
 
-  var pairsList = [];
-
-  for(var k = 0; k < 16; k++){
-    pairsList.push(timesOfDay[k] + location.salesByHour()[k] + ' cookies');
+  for(var i = 0; i < timesOfDay.length; i++) {
+    tdEl = document.createElement('td');
+    tdEl.textContent = this.hourlySales[i];
+    trEl.appendChild(tdEl);
   }
 
-  var list = document.createElement('ul');
-  var listArr = [];
+  tdEl = document.createElement('td');
+  tdEl.textContent = this.totalSales;
+  trEl.appendChild(tdEl);
+  myTable.appendChild(trEl);
+};
 
-  for (var x = 0; x < 16; x++) {
-    listArr.push('<li>' + pairsList[x] + '</li>');
+function makeHeader() {
+  var thEl = document.createElement('th');
+  var trEl = document.createElement('tr');
+  thEl.textContent = 'Location';
+  trEl.appendChild(thEl);
+  for(var i = 0; i < timesOfDay.length; i++){
+    var thEl = document.createElement('th');
+    // console.log('hello');
+    thEl.textContent = timesOfDay[i];
+    trEl.appendChild(thEl);
   }
-  var full_list = listArr.join('');
-  list.innerHTML = full_list;
-  document.body.appendChild(list);
+
+  thEl = document.createElement('th');
+  thEl.textContent = 'Grand Total';
+  trEl.appendChild(thEl);
+  myTable.appendChild(trEl);
 }
-//calls on each store function to run
-createList(pikePlace);
-createList(seaTac);
-createList(seaCent);
-createList(capHill);
-createList(alki);
+
+function renderAllLocations(){
+  for(var i = 0; i < allStores.length; i++){
+    allStores[i].render();
+  }
+}
+
+function makeFooter() {
+  var thEl = document.createElement('th');
+  var trEl = document.createElement('tr');
+  thEl.textContent = 'Hourly Totals';
+  trEl.appendChild(thEl);
+  var dailyTotalAllLocations = 0;
+  for(var i = 0; i < timesOfDay.length; i++){
+    var total = 0;
+    for(var j = 0; j < allStores.length; j++){
+      total += allStores[j].hourlySales[i];
+    }
+    thEl = document.createElement('th');
+    thEl.textContent = total;
+    trEl.appendChild(thEl);
+    dailyTotalAllLocations += total;
+    trEl.appendChild(thEl);
+  }
+
+  thEl = document.createElement('th');
+  thEl.textContent = dailyTotalAllLocations;
+  trEl.appendChild(thEl);
+  myTable.appendChild(trEl);
+}
+
+//event listener
+function makeStore(event){
+  event.preventDefault();
+  var name = event.target.name.value;
+  var minCust = parseInt(event.target.minCust.value);
+  var maxCust = parseInt(event.target.maxCust.value);
+  var avgCookieSale = parseFloat(event.target.avgCookieSale.value);
+  var addStore = new Store(name, minCust, maxCust, avgCookieSale);
+  event.target.name.value = null;
+  event.target.minCust.value = null;
+  event.target.maxCust.value = null;
+  event.target.avgCookieSale.value = null;
+  myTable.innerHtml = '';
+
+  makeHeader();
+  renderAllLocations();
+  makeFooter();
+  console.log('first calls');
+}
+
+//Variables ready to make the individual store objects
+var pikePlace = new Store('Pikes Market', 23, 65, 6.3);
+var seaTac = new Store ('Seatac', 3, 24, 1.2);
+var seaCent = new Store('Seattle Center', 11, 38, 3.7);
+var capHill = new Store('Capitol Hill', 30, 28, 2.3);
+var alki = new Store('Alki', 2, 16, 4.6);
+
+makeHeader();
+renderAllLocations();
+makeFooter();
+console.log('last calls');
+
+form.addEventListener('submit', makeStore);
